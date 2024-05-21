@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        .countryFilter {
+            display: none;
+        }
+        .container {
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .countrybtn {
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .countrybtn:hover {
+            background-color: #ddd;
+        }
+
+        .countrybtn.active {
+            background-color: #666;
+            color: white;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="countryList">
+      <button class="countrybtn active" data-filter="saudi">Cars</button>
+      <button class="countrybtn" data-filter="animals">Animals</button>
+      <button class="countrybtn" data-filter="fruits">Fruits</button>
+      <button class="countrybtn" data-filter="colors">Colors</button>
+    </div>
+
+    <div class="container">
+      <div class="countryFilter saudi">BMW</div>
+      <div class="countryFilter colors fruits">Orange</div>
+      <div class="countryFilter saudi">Volvo</div>
+      <div class="countryFilter colors">Red</div>
+      <div class="countryFilter saudi">Ford</div>
+      <div class="countryFilter colors">Blue</div>
+      <div class="countryFilter animals">Cat</div>
+      <div class="countryFilter animals">Dog</div>
+      <div class="countryFilter fruits">Melon</div>
+      <div class="countryFilter fruits">Kiwi</div>
+      <div class="countryFilter fruits">Banana</div>
+      <div class="countryFilter fruits">Lemon</div>
+      <div class="countryFilter animals">Cow</div>
+    </div>
+
+    <script>
+  $(document).ready(function () {
+    // Function to show default country on page load
+    function showDefault() {
+        $(".countryFilter").hide();
+        $(".countryFilter.saudi").addClass("active-filter").show();
+    }
+    
+    // Show default country on page load
+    showDefault();
+
+    $(".countrybtn").click(function () {
+        var filterValue = $(this).attr("data-filter");
+        $(".countryFilter").removeClass("active-filter").hide();
+        if (filterValue == "all") {
+            $(".countryFilter").addClass("active-filter").show();
+        } else {
+            $(".countryFilter").each(function() {
+                var classNames = $(this).attr("class").split(" ");
+                if (classNames.includes(filterValue)) {
+                    $(this).addClass("active-filter").show();
+                }
+            });
+        }
+        $(".countrybtn").removeClass("active");
+        $(this).addClass("active");
+    });
+});
+
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <style>
+		body {
+			font-family: DM Sans;
+			margin: 0;
+			padding: 0;
+		}
+		.coun-hed h4,
+		.coun-hed p,
+		.coun-phone p,
+		.country-container,
+		.coun-text,
+		.cn-loca,
+		.cn-loca img,
+		.coun-hed,
+		.coun-phone
+		{
+			margin: 0 !important;
+		}
+		.coun-hed h4,
+		.country-head,
+		.coun-hed p {
+			color: #000;
+		}
+		.coun-hed h4,
+		.coun-phone p {
+			font-weight: 500;
+		}
+		/* heading tag */
+		.country-head {
+			font-size: 30px;
+			font-weight: 600px;
+		}
+		/* country list */
+	
+		.countryFilter {
+			background-color: #fff;
+			background-clip: border-box;
+			border: 1px solid rgba(0, 0, 0, 0.125);
+			border-radius: 0.25rem;
+			text-align: center;
+			padding: 27px 20px;
+			position: relative;
+		}
+		.active-filter {
+			display: flex;
+			flex-direction: column;
+		}
+		.country-container {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: 16px;
+		}
+		.coun-hed h4 {
+			font-size: 1.125rem;
+			padding: 18px 0px 10px;
+			text-transform: capitalize;
+		}
+		.coun-hed p {
+			padding: 2px 0;
+			line-height: 1.5;
+		}
+		.coun-phone {
+			padding-top: 14px;
+		}
+		.coun-phone p {
+			font-size: 16px;
+		}
+		.coun-text {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 1rem;
+			flex: 1 1 auto;
+			align-items: center;
+		}
+		@media only screen and (max-width: 768px) {
+			.countryFilter {
+				width: auto;
+			}
+			.country-container {
+				grid-template-columns: 1fr 1fr;
+			}
+		}
+		@media only screen and (max-width: 484px) {
+			.country-container {
+				grid-template-columns: auto;
+				padding-left: 16px;
+				padding-right: 16px;
+			}
+		}
+		@media screen and (min-width: 1024px) and (max-width: 1199px) {
+	
+			.countryFilter {
+				width: auto;
+			}
+			.country-container {
+				grid-template-columns: 1fr 1fr 1fr;
+			}
+		} 
+	</style>
+    <body>
+        <div class="country-container">
+            <div class="countryFilter">
+                <div class="coun-text">
+                    <div class="cn-loca">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/airport_svg.svg?v=1714972350" />
+                    </div>
+                    <div class="coun-hed">
+                        <h4>Kuwait international Airport
+                        </h4>
+                        <p>مطار الكويت الدولي
+
+                        </p>
+                        <p>T1, T4, T5
+                        </p>
+                    </div>
+                    <div class="coun-phone">
+                        <p>Kuwait</p>
+                    </div>
+                </div>
+            </div>
+            <div class="countryFilter">
+                <div class="coun-text">
+                    <div class="cn-loca">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/airport_svg.svg?v=1714972350" />
+                    </div>
+                    <div class="coun-hed">
+                        <h4>Queen Alia International Airport
+                        </h4>
+                        <p>مطار الملكة عالية الدولي
+                        </p>
+                        <p>Departure and Arrival Stores
+                        </p>
+                    </div>
+                    <div class="coun-phone">
+                        <p>Jordan
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="countryFilter">
+                <div class="coun-text">
+                    <div class="cn-loca">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/airport_svg.svg?v=1714972350" />
+                    </div>
+                    <div class="coun-hed">
+                        <h4>Sharjah International Airport
+                        </h4>
+                        <p>مطار الشارقة الدولي
+                        </p>
+                        <p>Main Departure Store
+                        </p>
+                    </div>
+                    <div class="coun-phone">
+                        <p>Sharjah- UAE
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="countryFilter">
+                <div class="coun-text">
+                    <div class="cn-loca">
+                        <img
+                            src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/airport_svg.svg?v=1714972350" />
+                    </div>
+                    <div class="coun-hed">
+                        <h4>Cairo International Airport
+                        </h4>
+                        <p>مطار القاهرة الدولي
+                        </p>
+                        <p>Main Departure Store
+                        </p>
+                    </div>
+                    <div class="coun-phone">
+                        <p>Egypt</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

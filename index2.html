@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap"
+            rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+            rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    <style>
+    body {
+      font-family: DM Sans;
+      margin: 0;
+      padding: 0;
+    }
+    .countrybtn {
+      font-family: Syne;
+    }
+    /* common style */
+    .list-cou,
+    .country-list-tab,
+    .coun-phone,
+    .coun-clock {
+      display: flex;
+    }
+    .coun-phone,
+    .coun-clock {
+      justify-content: center;
+      align-items: center;
+    }
+    .coun-hed h4,
+    .coun-hed p,
+    .coun-phone p,
+    .coun-clock h5,.country-container,.coun-text,.cn-loca
+,.cn-loca img,.coun-hed,.coun-phone,.coun-clock,.coun-num,.coun-map
+
+ {
+      margin: 0 !important;
+    }
+    .coun-hed h4,
+    .country-head,
+    .coun-hed p {
+      color: #000;
+    }
+    .coun-hed h4,
+    .coun-phone p,
+    .coun-clock h5,
+    .coun-map a {
+      font-weight: 500;
+    }
+    /* heading tag */
+    .country-head {
+      font-size: 30px;
+      font-weight: 600px;
+    }
+    /* country list */
+    .country-list-tab {
+      align-items: start;
+      gap: 24px;
+    }
+    .list-cou {
+      flex-direction: column;
+      max-width: 25%;
+      width: 255px;
+      border: 1px solid #dee2e6;
+      border-radius: 0.25rem;
+    }
+    .list-cou .countrybtn:first-child {
+      border-top-left-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+    }
+    .list-cou .countrybtn:last-child {
+      border-bottom-left-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+    }
+    .list-cou .countrybtn:last-child {
+      border-bottom: 0;
+    }
+    .countryFilter {
+      display: none;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.125);
+      border-radius: 0.25rem;
+      text-align: center;
+      width: 230px;
+      padding: 27px 20px;
+      position: relative;
+    }
+    .show {
+      display: flex;
+      flex-direction: column;
+    }
+    .country-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .coun-hed h4 {
+      font-size: 1.125rem;
+      padding: 18px 0px 10px;
+      text-transform: capitalize;
+    }
+    .coun-hed p {
+      padding: 2px 0;
+      line-height: 1.5;
+    }
+    .coun-phone {
+      gap: 10px;
+      padding-top: 14px;
+    }
+    .coun-phone p,
+    .coun-num span,
+    .countrybtn {
+      font-size: 14px;
+    }
+    .coun-clock {
+      gap: 10px;
+      padding-top: 20px;
+    }
+    .coun-clock h5 {
+      font-size: 1.125rem;
+    }
+    .coun-num span {
+      padding-top: 10px;
+      display: block;
+      padding-bottom: 20px;
+    }
+    .coun-map a {
+      background: #2a2b2c;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      padding: 7px 27px;
+    }
+    .coun-text {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      flex: 1 1 auto;
+      align-items: center;
+    }
+
+    .coun-map a:hover {
+      color: #ab8812;
+    }
+    /* Style the buttons */
+    .countrybtn {
+      border-bottom: 1px solid #dee2e6;
+      border-left: 0;
+      border-right: 0;
+      border-top: 0;
+      outline: none;
+      padding: 14.5px 18px;
+      background-color: #fff;
+      cursor: pointer;
+      color: #495057;
+      text-align: left;
+    }
+    .countrybtn:hover {
+      background-color: #f8f9fa;
+    }
+
+    .countrybtn.active {
+      background-color: #2a2b2c;
+      color: white;
+    }
+.coun-clock .fa,.coun-phone .fa
+
+ {
+
+font-style: normal !important;
+
+
+}
+    @media only screen and (max-width: 768px) {
+      .country-list-tab {
+        display: block;
+      }
+      .list-cou {
+        flex-direction: row;
+        width: max-content;
+        max-width: 100%;
+        margin-bottom: 20px;
+        overflow: auto;
+      }
+      .list-cou .countrybtn:first-child,.list-cou .countrybtn:last-child  {
+        border-radius: 0;
+      }
+      .countrybtn {
+        border-bottom: 0;
+        text-wrap: nowrap;
+      }
+      .countryFilter {
+        width: auto;
+      }
+    }
+    @media only screen and (max-width: 484px) {
+      .country-container {
+        grid-template-columns: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+  </style>
+    <body>
+        <div class="country-head">
+            <h3>BRANCHES</h3>
+        </div>
+        <div class="country-list-tab">
+            <div id="countryList" class="list-cou">
+                <button class="countrybtn active"
+                    onclick="filterSelection('saudi')">
+                    Saudi Arabia
+                </button>
+                <button class="countrybtn" onclick="filterSelection('spain')">
+                    Spain
+                </button>
+                <button class="countrybtn" onclick="filterSelection('kuwait')">
+                    Kuwait
+                </button>
+                <button class="countrybtn" onclick="filterSelection('bahrain')">
+                    Bahrain
+                </button>
+            </div>
+            <div class="country-container">
+                <div class="countryFilter saudi">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>DHAHRAN MALL - DAHRAN</h4>
+                            <p>Custodian of the Two Holy Mosques Street, Gate
+                                13</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>9:30AM-10:30PM</span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Mall+of+Dhahran,+6864+Prince+Faisal+Bin+Fahd+Road,+Al+Dawhah+Al+Janubiyah,+Dhahran+34457,+Saudi+Arabia/@26.3062977,50.1688396,17z/data=!3m1!4b1!4m5!3m4!1s0x3e49e6310f736f69:0x9b6d47371a57f131!8m2!3d26.3062977!4d50.1710283">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter saudi">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>AL-RASHED MALL -KHOBAR</h4>
+                            <p>Olaya City, Gate 7, Ground Floor</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>9:30AM-10:30PM</span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Rashid+Mall/@26.2910093,50.0495694,11.75z/data=!4m5!3m4!1s0x3e49e7d8537da245:0x49ea7676b033e002!8m2!3d26.2908311!4d50.1805653?hl=en-KW">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter saudi">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>NAKHEEL MALL - DAMMAM</h4>
+                            <p>
+
+                                3544 King Fahd Road, Al Manar, Dammam 32274,
+                                Kingdom of Saudi
+                                Arabia, Gate 3
+                            </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>9:30AM-10:30PM</span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Nakheel+Mall+%7C+Dammam/@26.3914943,50.035342,17z/data=!3m1!4b1!4m5!3m4!1s0x3e49fdfb5de72b1d:0x5259f68a99907b6a!8m2!3d26.3914943!4d50.0375307?hl=en-KW">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter saudi">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>AL-ATHEEM MALL - HAFAR AL-BATIN</h4>
+                            <p>Merz City, Gate 3/5</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>9:30AM-10:30PM</span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps?q=Al+Othaim+Mall+%7C+%D8%A7%D9%84%D8%B9%D8%AB%D9%8A%D9%85+%D9%85%D9%88%D9%84,+Prince+Mohammed+Bin+Fahd+Branch+Rd,+Al+Shifa,+Othaim+Mall+Othaim+Mall%D8%8C%D8%8C+Dammam+32236,+Saudi+Arabia&ftid=0x3e49fb4b4c00f221:0x4135f402fb2364">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter saudi">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>ALNOOR MALL - CITY</h4>
+                            <p>Laayoune City, ground floor, Gate 4</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>9:30AM-10:30PM</span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps?q=Al+Othaim+Mall+%7C+%D8%A7%D9%84%D8%B9%D8%AB%D9%8A%D9%85+%D9%85%D9%88%D9%84,+Prince+Mohammed+Bin+Fahd+Branch+Rd,+Al+Shifa,+Othaim+Mall+Othaim+Mall%D8%8C%D8%8C+Dammam+32236,+Saudi+Arabia&ftid=0x3e49fb4b4c00f221:0x4135f402fb2364">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter spain">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>ATYAB AL MARSHOUD MARBELLA </h4>
+                            <p>Puerto Banús</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>11 AM -12 AM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+
+                        <a href="#">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Assima Mall</h4>
+                            <p>First Floor</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 11 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Assima+Mall/@29.3741965,47.9875784,17z/data=!3m1!4b1!4m6!3m5!1s0x3fcf85eb828ad397:0xa88637fea6c3fe5f!8m2!3d29.3741965!4d47.9875784!16s%2Fg%2F11p4dbd5j7?hl=en-KW&entry=ttu">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Al Tujjar Building</h4>
+                            <p>Ground Floor</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Tujjar+Building+Kuwait/@29.3761751,47.9854002,15z/data=!4m6!3m5!1s0x3fcf850fc02e3f6d:0x97237a5b6634a9af!8m2!3d29.3761751!4d47.9854002!16s%2Fg%2F11h9plh02t?entry=ttu">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Homz Mall</h4>
+                            <p>First Floor</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 8 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Homz+Mall/@29.2625913,47.9617705,17z/data=!3m1!4b1!4m5!3m4!1s0x3fcf99da20c90527:0x4375f7ec09ec9eed!8m2!3d29.2625913!4d47.9639592?shorturl=1">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Salhiya Complex</h4>
+                            <p>Ground floor,shop no 12, next to starbucks</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+
+                        </div>
+                        <div class="coun-num">
+                            <span>8 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Salhiya+mall,+%D9%85%D8%AC%D9%85%D8%B9+%D8%A7%D9%84%D8%B5%D8%A7%D9%84%D8%AD%D9%8A%D8%A9%D8%8C+%D9%85%D8%AD%D9%85%D8%AF+%D8%AB%D9%86%D9%8A%D8%A7%D9%86+%D8%A7%D9%84%D8%BA%D8%A7%D9%86%D9%85%D8%8C+%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA%D8%8C%E2%80%AD/data=!4m2!3m1!1s0x3fcf854c05f9ac27:0x796afba15a86ff9e?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Heritage Souq</h4>
+                            <p>al-zal market ,al-sarrafin street , shop no8</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>8 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D9%83%D9%8A%D9%87%D8%8C+%D8%B4%D8%A7%D8%B1%D8%B9+%D8%B9%D9%84%D9%8A+%D8%A7%D9%84%D8%B3%D8%A7%D9%84%D9%85%D8%8C+%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA%D8%8C%E2%80%AD/data=!4m2!3m1!1s0x3fcf85eb9ba0f57b:0xf02e5b4462219699?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Souq Al Kuwait</h4>
+                            <p>ground floor , shop no 58 , in front of gulf bank
+                            </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>8 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D9%83%D9%8A%D9%87%D8%8C+%D8%B4%D8%A7%D8%B1%D8%B9+%D8%B9%D9%84%D9%8A+%D8%A7%D9%84%D8%B3%D8%A7%D9%84%D9%85%D8%8C+%D9%85%D8%AF%D9%8A%D9%86%D8%A9+%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA%D8%8C%E2%80%AD/data=!4m2!3m1!1s0x3fcf85eb9ba0f57b:0xf02e5b4462219699?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Al Hamra</h4>
+                            <p>mezzanine , shop no 23 , next to costa cafe </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Hamra+Business+Tower+%26+Shopping+Center,+159+St,+Kuwait+City/data=!4m2!3m1!1s0x3fcf849856ab55cf:0xa814d6b5243fa3a8?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Marina Mall</h4>
+                            <p>first floor next to rolex </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Marina+Mall,+Salem+Al+Mubarak+St,+Salmiya/data=!4m2!3m1!1s0x3fcf9d99808ae517:0xb7ba6092d7757009?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Mohalab Mall</h4>
+                            <p>beside alhajery pharmacy </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Muhallab+Commercial+Complex,+2415+Al+Muthanna+St,+Kuwait+City/data=!4m2!3m1!1s0x3fcf9cf18b6cc4e7:0x8a48c425ce454c0?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Al Khiran Mall</h4>
+                            <p>Ground Floor</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Khiran+Mall/@28.6726234,48.3481259,15z/data=!4m6!3m5!1s0x3fce95c6cd13fb69:0x13efda01d008a18!8m2!3d28.6726234!4d48.3481259!16s%2Fg%2F11hdx7w6kg?entry=ttu">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Al Fanar</h4>
+                            <p>Ground floor , shop no 46</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Vaigai+Boutique,+Salem+Al+Mubarak+St+Al+Fanar+Mall,+Basement%D8%8C+Salmiya/data=!4m2!3m1!1s0x3fcf9d8f63e1d669:0xd28460c60f97a76a?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>The Warehouse Mall</h4>
+                            <p>Ground Floor</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>7 AM - 11 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/The+Warehouse+Mall/@29.0853041,48.1048256,15z/data=!4m6!3m5!1s0x3fcf0723ef0a4b8b:0x6e6551c67eeb415c!8m2!3d29.0854955!4d48.1028428!16s%2Fg%2F11s90gxydl?entry=ttu">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Boulevard</h4>
+                            <p>Ground Floor, beside the sultan center , opppsite
+                                alsarhan</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Boulevard,+Salmiya/data=!4m2!3m1!1s0x3fcf9df4347d3719:0xa57b88a580ca3f5a?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Bairaq Mall</h4>
+                            <p>Ground Floor , next to wahran</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Bairaq+Mall,+Equila+Fintas+%D8%A7%D9%84%D8%B9%D9%82%D9%8A%D9%84%D8%A9%D8%8C+50013%E2%80%AD/data=!4m2!3m1!1s0x3fcf0a1f49acf0f3:0x34cb9d4d72ee788b?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Gate Mall</h4>
+                            <p>ground floor , entrance no 3</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/%D8%B0%D8%A7+%D8%AC%D9%8A%D8%AA+%D9%85%D9%88%D9%84%E2%80%AD/data=!4m2!3m1!1s0x3fcf0bb524a143af:0xc6282008496ee0ac?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Al Kout</h4>
+                            <p>ground floor , shop no 46</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/%D9%85%D8%AC%D9%85%D8%B9+%D8%A7%D9%84%D9%83%D9%88%D8%AA+alkout+mall,+Dabous+St%E2%80%AD/data=!4m2!3m1!1s0x3fcf07bb13a3ec7d:0x1f7a510e7fface70?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>The Avenues Phase-2</h4>
+                            <p>first floor next to max shop no 61-62</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/The+Avenues,+Ghazali+St,+Al-Rai/data=!4m2!3m1!1s0x3fcf9a893321a965:0x4db8af8c5528aa7f?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Grand Avenues</h4>
+                            <p>shop no 060 , next to haleeb o heil </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/The+Avenues,+Ghazali+St,+Al-Rai/data=!4m2!3m1!1s0x3fcf9a893321a965:0x4db8af8c5528aa7f?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Al Manar Mall</h4>
+                            <p>ground floor next to body center </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Al+Manar+Mall,+9346+2+St,+Al+Jahra/data=!4m2!3m1!1s0x3fcff68e63a7cbc3:0x9524574d81c8a371?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>360 Mall</h4>
+                            <p>m 2 , next to ikea , new expansion</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/360+Mall,+800001+Faris+Abdulrahman+Al+Waqayan+St,+Zahra/data=!4m2!3m1!1s0x3fcf994f3a0fe4ed:0xbd32d142f0acd9cb?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Awtad Center</h4>
+                            <p>opposite the main door </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/dir/29.304603,47.92925/%D9%85%D8%AC%D9%85%D8%B9+%D8%A3%D9%88%D8%AA%D8%A7%D8%AF%D8%8C+%D8%A7%D9%84%D8%AC%D9%87%D8%B1%D8%A7%D8%A1+00004%E2%80%AD/@29.3194579,47.6364268,11z/data=!3m1!4b1!4m10!4m9!1m1!4e1!1m5!1m1!1s0x3fcff6883c7c784f:0x644448dd6e8d30d7!2m2!1d47.6732987!2d29.3483737!3e0?entry=ttu">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>The Avenues Phase-4</h4>
+                            <p>market </p>
+                        </div>
+
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/%D8%A7%D9%84%D8%A7%D9%81%D9%86%D9%8A%D9%88%D8%B2%D8%8C+%D8%B4%D8%A7%D8%B1%D8%B9+%D9%85%D8%B7%D9%84%D9%82+%D8%B9%D8%A8%D8%A7%D8%B3+%D9%85%D9%86%D8%A7%D9%88%D8%B1%D8%8C%E2%80%AD/data=!4m2!3m1!1s0x3fcf9bf4152ebecb:0xa88c425ed31456e6?utm_source=mstt_1&entry=gps">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter kuwait">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>THE AVENUES - ARCADES</h4>
+                            <p>THE ARCADES </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>22097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>11 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://maps.app.goo.gl/zvmxaeEyuRDEfexNA?g_st=iw">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter bahrain">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Moda Mall -Manama</h4>
+                            <p>issa alkabir street , shop 69 , building A0001 ,
+                                CENTRAL MANAMA</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Moda+Mall/@26.2396469,50.5790796,17z/data=!3m1!4b1!4m5!3m4!1s0x3e49a5f6861f09bd:0x87d6f778294d47e3!8m2!3d26.2396469!4d50.5812683?hl=en-KW">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter bahrain">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Seef Mall - Isa Town</h4>
+                            <p>Shop 67 Building 3199,Road 1012, Isa Town
+                                0810</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 11 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Seef+Mall+-+Isa+Town/@26.172266,50.5451364,17z/data=!3m1!4b1!4m5!3m4!1s0x3e49ae5b9da592cd:0x6bf078410c8dd07f!8m2!3d26.172266!4d50.5473251?hl=en-KW">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+
+                </div>
+                <div class="countryFilter bahrain">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>Seef Mall Muharraq</h4>
+                            <p>Ground Floor, Avenue29, Building 154, Arad 240,
+                                Near To Airport,
+                                Muharraq</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 11 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/Seef+Mall+Muharraq/@26.2547237,50.6241962,17z/data=!3m1!4b1!4m5!3m4!1s0x3e49a6262d83bf91:0x215bc51b1ad9982b!8m2!3d26.2547237!4d50.6263849?hl=en-KW">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter bahrain">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>District 1 Mall</h4>
+                            <p>ROAD NO 7901 , COMPLEX NO 579 , JANABIYAH 1001
+                                BAHRAIN </p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>8 AM - 1 AM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/District+1+Mall/@26.1719612,50.4800751,17z/data=!3m1!4b1!4m5!3m4!1s0x3e49b1c3c0b39bdd:0x703f1189b389a001!8m2!3d26.1719612!4d50.4822638?hl=en-KW">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="countryFilter bahrain">
+                    <div class="coun-text">
+                        <div class="cn-loca">
+                            <img
+                                src="https://cdn.shopify.com/s/files/1/0861/9484/8061/files/placeholder.svg?v=1714716943">
+                        </div>
+                        <div class="coun-hed">
+                            <h4>City Center Mall – Manama</h4>
+                            <p>Building 2758, Road، 4650 Shaikh Khalifa Bin
+                                Salman Hwy, Jidhafs</p>
+                        </div>
+                        <div class="coun-phone">
+                            <i class="fa fa-phone"></i>
+                            <p>96522097333</p>
+                        </div>
+                        <div class="coun-clock">
+                            <i class="fa fa-clock-o"></i>
+                            <h5>Saturday-Friday</h5>
+                        </div>
+                        <div class="coun-num">
+                            <span>10 AM - 10 PM </span>
+                        </div>
+                    </div>
+                    <div class="coun-map">
+                        <a target="_blank"
+                            href="https://www.google.com/maps/place/City+Centre+Bahrain/@26.2325286,50.5519564,17z/data=!3m1!4b1!4m6!3m5!1s0x3e49a5788e4fa6d3:0x59a12e7b22b7b68c!8m2!3d26.2325286!4d50.5541451!16s%2Fg%2F11gdlkcfv9?entry=tts&shorturl=1">
+                            <span>View Map</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+      filterSelection("saudi");
+      function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("countryFilter");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+          w3RemoveClass(x[i], "show");
+          if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+        }
+      }
+
+
+      function w3AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          if (arr1.indexOf(arr2[i]) == -1) {
+            element.className += " " + arr2[i];
+          }
+        }
+      }
+
+      function w3RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+          while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);
+          }
+        }
+        element.className = arr1.join(" ");
+      }
+
+      // Add active class to the current button (highlight it)
+      var btnContainer = document.getElementById("countryList");
+      var btns = btnContainer.getElementsByClassName("countrybtn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    </script>
+    </body>
+</html>
